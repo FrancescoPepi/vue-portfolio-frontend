@@ -1,6 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
+
 // ADD BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
@@ -37,3 +41,4 @@ library
 const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");
+// app.AOS.init();

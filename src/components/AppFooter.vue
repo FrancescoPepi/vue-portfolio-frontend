@@ -17,7 +17,15 @@ export default {
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <div class="container mt-5">
+    <h1 data-aos="fade-up" data-aos-easing="ease-in-sine">
+      {{ title }}
+    </h1>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  height: 150px;
+}
+</style>

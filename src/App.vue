@@ -22,10 +22,11 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader data-aos="slide-down" />
   <AppMain />
   <AppFooter />
   <AppUpViewport />
+  <div class="blur"></div>
 </template>
 
 <style lang="scss"></style>
