@@ -24,19 +24,17 @@ import // faCircle as faCircleS,
 // faPhone,
 "@fortawesome/free-solid-svg-icons";
 
-import // faFacebookF,
-// faTwitter,
-"@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faLinkedin,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 import // faCircle as faCircleR,
 // faCopyright,
 "@fortawesome/free-regular-svg-icons";
 
-library
-  .add
-  // faCircleS,
-  // faCircleR,
-  ();
+library.add(faGithub, faLinkedin, faInstagram);
 
 const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon);
