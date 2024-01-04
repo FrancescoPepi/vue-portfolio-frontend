@@ -21,19 +21,23 @@ export default {
   methods: {
     fetchApi(uri = this.api.baseUrl + "projects") {
       axios.get(uri).then((responce) => {
-        // this.store.images = responce.data.images.data;
         this.store.projects = responce.data.projects.data;
-        for (let project of this.store.projects) {
-          project.images = [];
+        // for (let project of this.store.projects) {
+        //   project.images = [];
 
-          for (let image of responce.data.images) {
-            if (image.project_id == project.id) {
-              project.images.push(image);
-            }
-          }
+        //   for (let image of responce.data.images) {
+        //     if (image.project_id == project.id) {
+        //       project.images.push(image);
+        //     }
+        //   }
+        // }
+        let images = responce.data.images;
+        for (let project of this.store.projects) {
+          project.images = images.filter(
+            (image) => image.project_id === project.id
+          );
         }
 
-        // console.log(responce.data.images);
         console.log(this.store.projects);
       });
     },

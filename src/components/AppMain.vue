@@ -1,5 +1,5 @@
 <script>
-// import AppPromoter from "./subComponentMain/AppPromoter.vue";
+import Carosello from "./Carosello.vue";
 // import AppCall from "./subComponentMain/AppCall.vue";
 // import AppCourses from "./subComponentMain/AppCourses.vue";
 // import AppInstructors from "./subComponentMain/AppInstructors.vue";
@@ -15,11 +15,17 @@ export default {
       title: "MY PROJECT",
       img: "/sfondo.png",
       imgProfile: "/io.png",
+      // active: 0,
+      // img2: "http://127.0.0.1:8000/storage/" + store.images[0].filename,
       // nBase: 50,
     };
   },
 
   methods: {
+    // changeImage() {
+    //   this.active += 1;
+    // },
+
     // increments() {
     //   let nNew = this.nBase + 50;
     //   console.log(nNew);
@@ -34,6 +40,7 @@ export default {
   },
 
   components: {
+    Carosello,
     // AppPromoter,
     // AppCall,
     // AppCourses,
@@ -46,6 +53,14 @@ export default {
   // 	props:{
   // 		passaggioInfo: stringa,
   //  	 },
+  // created() {
+  //   console.log("http://127.0.0.1:8000/storage/" + this.store.images[0].filename);
+  // },
+  // created() {
+  //   window.setInterval(() => {
+  //     this.changeImage();
+  //   }, 3000);
+  // },
 };
 </script>
 
@@ -187,15 +202,25 @@ export default {
     <section v-if="isMobile()">
       <div class="row row-cols-1">
         <div
-          v-for="i in 6"
+          v-for="i in this.store.images.length"
           class="col g-5"
           data-aos="zoom-in-up"
           data-aos-anchor-placement="center-bottom"
           :data-aos-delay="i * 50"
         >
           <div class="card">
-            <div class="card-header">PROVA</div>
-            <img :src="img" class="card-img-top" alt="..." />
+            <div class="card-header">
+              {{ this.store.projects[i - 1].title }}
+            </div>
+            <img
+              v-if="this.store.images && this.store.images.length > 0"
+              :src="
+                'http://127.0.0.1:8000/storage/' +
+                this.store.images[i - 1].filename
+              "
+              class="card-img-top"
+              alt="..."
+            />
             <div class="card-footer"></div>
           </div>
         </div>
@@ -206,15 +231,19 @@ export default {
     <section v-if="!isMobile()">
       <div class="row row-cols-3">
         <div
-          v-for="i in 6"
+          v-for="project in this.store.projects"
           class="col g-3"
           data-aos="fade-left"
           data-aos-anchor-placement="center-bottom"
-          :data-aos-delay="i * 150"
+          :data-aos-delay="project * 150"
         >
           <div class="card">
-            <div class="card-header">PROVA</div>
-            <img :src="img" class="card-img-top" alt="..." />
+            <div class="card-header">
+              <h4>
+                {{ project.label }}
+              </h4>
+            </div>
+            <Carosello :project="project" />
             <div class="card-footer"></div>
           </div>
         </div>
@@ -240,5 +269,13 @@ a {
 }
 .container {
   height: 100%;
+}
+.card {
+  color: white;
+  background-color: rgba(64, 63, 63, 0.429);
+  & img {
+    height: 250px;
+    object-fit: cover;
+  }
 }
 </style>
