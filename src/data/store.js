@@ -7,19 +7,19 @@ export const store = reactive({
     {
       name: "GitHub",
       icon: "fa-brands fa-github",
-      url: "",
+      url: "https://github.com/FrancescoPepi",
       id: "",
     },
     {
       name: "Linkedin",
       icon: "fa-brands fa-linkedin",
-      url: "",
+      url: "http://www.linkedin.com/in/francesco-pepi",
       id: "",
     },
     {
       name: "Instagram",
       icon: "fa-brands fa-instagram",
-      url: "",
+      url: "https://www.instagram.com/_francescopepi/",
       id: "",
     },
   ],

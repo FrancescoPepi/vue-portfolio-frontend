@@ -40,19 +40,41 @@ export default {
 
 <template>
   <!-- CARD DESKTOP -->
-  <div v-for="(image, index) in this.project.images">
+  <div v-for="(image, index) in this.project.images" class="box">
     <img
       v-show="index == active"
       :src="'http://127.0.0.1:8000/storage/' + image.filename"
-      class="card-img-top"
+      class="card-img-top slide-left"
       alt="..."
     />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.box {
+  overflow: hidden;
+}
 .card img {
+  transition: all 3s;
   height: 250px;
   object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slide-left {
+  -webkit-animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-left {
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
 }
 </style>

@@ -110,7 +110,7 @@ export default {
               <a
                 class="icon-link icon-link-hover link-underline-dark"
                 style="--bs-icon-link-transform: translate3d(0, -0.165rem, 0)"
-                href="#"
+                :href="link.url"
               >
                 <i class="bi" aria-hidden="true">
                   <font-awesome-icon :icon="link.icon" />
@@ -130,6 +130,9 @@ export default {
         class="col-lg-5 ms-auto"
       >
         <img class="img-fluid" :src="imgProfile" alt="" />
+      </div>
+      <div class="io" data-aos="fade-up" data-aos-easing="ease-in-sine">
+        <span class="my-3 text-center mx-auto"></span>
       </div>
     </div>
 
@@ -202,25 +205,18 @@ export default {
     <section v-if="isMobile()">
       <div class="row row-cols-1">
         <div
-          v-for="i in this.store.images.length"
+          v-for="project in this.store.projects"
           class="col g-5"
           data-aos="zoom-in-up"
           data-aos-anchor-placement="center-bottom"
-          :data-aos-delay="i * 50"
+          :data-aos-delay="project * 50"
         >
           <div class="card">
             <div class="card-header">
-              {{ this.store.projects[i - 1].title }}
+              {{ project.label }}
             </div>
-            <img
-              v-if="this.store.images && this.store.images.length > 0"
-              :src="
-                'http://127.0.0.1:8000/storage/' +
-                this.store.images[i - 1].filename
-              "
-              class="card-img-top"
-              alt="..."
-            />
+            <Carosello :project="project" />
+
             <div class="card-footer"></div>
           </div>
         </div>
@@ -237,13 +233,21 @@ export default {
           data-aos-anchor-placement="center-bottom"
           :data-aos-delay="project * 150"
         >
-          <div class="card">
+          <div class="card position-relative">
             <div class="card-header">
               <h4>
                 {{ project.label }}
               </h4>
             </div>
             <Carosello :project="project" />
+            <div class="card-text position-absolute start-0 p-2">
+              <p>
+                {{ project.type_id }}
+              </p>
+              <p>
+                {{ project.description }}
+              </p>
+            </div>
             <div class="card-footer"></div>
           </div>
         </div>
@@ -253,6 +257,38 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.io {
+  &::before {
+    margin: 0 auto;
+    content: url("/down-arrow-svgrepo-com.svg");
+    display: block;
+    width: 25px;
+    animation: bounce2 2s ease infinite;
+  }
+  span {
+    width: 30%;
+    display: block;
+    border: 2px solid rgba(93, 93, 93, 0.405);
+    border-radius: 25px;
+  }
+}
+
+@keyframes bounce2 {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
 .about-me-lg {
   height: calc(100vh - 110px);
   align-items: center;
@@ -276,6 +312,19 @@ a {
   & img {
     height: 250px;
     object-fit: cover;
+  }
+  .card-text {
+    text-shadow: -2px 0 3px black, 0 2px 3px black, 2px 0 3px black,
+      0 -2px 3px black;
+    width: 100%;
+    min-height: 100px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 0, 0, 0),
+      rgb(186, 182, 182, 1)
+    );
+    backdrop-filter: blur(1px);
+    bottom: 5%;
   }
 }
 </style>

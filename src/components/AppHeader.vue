@@ -55,7 +55,7 @@ export default {
                 >HOME</a
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a
                 class="nav-link"
                 data-aos="flip-up"
@@ -63,7 +63,7 @@ export default {
                 href="#"
                 >ABOUT ME</a
               >
-            </li>
+            </li> -->
             <li class="nav-item">
               <a
                 class="nav-link"
