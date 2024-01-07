@@ -38,7 +38,7 @@ import // faCircle as faCircleR,
 library.add(faGithub, faLinkedin, faInstagram);
 
 const app = createApp(App);
-app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
+app.use(router);
 app.mount("#app");
 // app.AOS.init();

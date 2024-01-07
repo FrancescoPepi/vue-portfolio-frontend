@@ -12,14 +12,14 @@ export default {
       store,
       scTimer: 0,
       scY: 0,
-      api: {
-        baseUrl: "http://127.0.0.1:8000/api/",
-      },
+      // api: {
+      //   baseUrl: "http://127.0.0.1:8000/api/",
+      // },
     };
   },
 
   methods: {
-    fetchApi(uri = this.api.baseUrl + "projects") {
+    fetchApi(uri = this.store.api.baseUrl + "projects") {
       axios.get(uri).then((responce) => {
         this.store.projects = responce.data.projects.data;
         // for (let project of this.store.projects) {

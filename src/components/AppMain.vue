@@ -233,23 +233,26 @@ export default {
           data-aos-anchor-placement="center-bottom"
           :data-aos-delay="project * 150"
         >
-          <div class="card position-relative">
-            <div class="card-header">
-              <h4>
-                {{ project.label }}
-              </h4>
+          <!-- ! da completare -->
+          <router-link :project="project" :to="{ name: 'projects' }">
+            <div class="card position-relative">
+              <div class="card-header">
+                <h4>
+                  {{ project.label }}
+                </h4>
+              </div>
+              <Carosello :project="project" />
+              <div class="card-text position-absolute start-0 p-2">
+                <p>
+                  {{ project.type_id }}
+                </p>
+                <p>
+                  {{ project.description }}
+                </p>
+              </div>
+              <div class="card-footer"></div>
             </div>
-            <Carosello :project="project" />
-            <div class="card-text position-absolute start-0 p-2">
-              <p>
-                {{ project.type_id }}
-              </p>
-              <p>
-                {{ project.description }}
-              </p>
-            </div>
-            <div class="card-footer"></div>
-          </div>
+          </router-link>
         </div>
       </div>
     </section>

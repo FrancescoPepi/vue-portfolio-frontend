@@ -9,20 +9,18 @@ export default {
       title: "MY PROJECT",
       img: "/sfondo.png",
       imgProfile: "/io.png",
+      project: {
+        id: 1,
+      },
     };
   },
 
   methods: {
-    // changeImage() {
-    //   this.active += 1;
-    // },
+    selectProject(idProject) {
+      this.project = idProject;
+      // console.log(this.project);
+    },
 
-    // increments() {
-    //   let nNew = this.nBase + 50;
-    //   console.log(nNew);
-    //   this.nBase = nNew;
-    //   return nNew;
-    // },
     isMobile() {
       if (screen.width <= 720) {
         return true;
@@ -41,17 +39,17 @@ export default {
     // AppNewsLetter,
   },
 
-  // 	props:{
-  // 		passaggioInfo: stringa,
-  //  	 },
+  props: {
+    projectProps: Object,
+  },
   // created() {
   //   console.log("http://127.0.0.1:8000/storage/" + this.store.images[0].filename);
   // },
-  // created() {
-  //   window.setInterval(() => {
-  //     this.changeImage();
-  //   }, 3000);
-  // },
+  created() {
+    if (this.projectProps) {
+      this.project = this.projectProps;
+    }
+  },
 };
 </script>
 
@@ -59,9 +57,11 @@ export default {
   <div class="container">
     <!-- HERO + PRESENTAZIONE -->
 
-    <h1 data-aos="zoom-in" data-aos-delay="300" class="text-center mb-5">
-      {{ title }}
-    </h1>
+    <div class="box py-2 mb-5">
+      <h1 data-aos="zoom-in" data-aos-delay="300" class="text-center">
+        {{ title }}
+      </h1>
+    </div>
     <!-- CARD MOBILE -->
     <section v-if="isMobile()">
       <div class="row row-cols-1">
@@ -84,9 +84,35 @@ export default {
       </div>
     </section>
 
-    <!-- CARD DESKTOP -->
+    <!--  DESKTOP -->
     <section v-if="!isMobile()">
-      <div class="row row-cols-3">
+      <!-- SLIDER DESKTOP -->
+
+      <div class="box p-4 mb-5 slider">
+        <ul class="navbar-nav">
+          <li
+            v-for="(project, index) in this.store.projects"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            class="nav-item"
+          >
+            <a
+              @click="selectProject(project)"
+              :class="
+                this.project.id - 1 == index ? 'router-link-exact-active' : ''
+              "
+              class="nav-link fs-4"
+            >
+              {{ project.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- CARD DESKTOP -->
+      <Carosello :project="this.store.projects[this.project.id - 1]" />
+      <div>{{ project.description }}</div>
+
+      <!-- <div class="row row-cols-3">
         <div
           v-for="project in this.store.projects"
           class="col g-3"
@@ -112,12 +138,34 @@ export default {
             <div class="card-footer"></div>
           </div>
         </div>
-      </div>
+      </div> -->
     </section>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.box {
+  box-shadow: rgba(148, 148, 148, 0.116) 0px 30px 60px -12px,
+    rgba(66, 66, 245, 0.156) 0px 18px 36px -18px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.slider {
+  min-width: 300px;
+  position: fixed;
+  top: 20%;
+  left: 5%;
+}
+li a {
+  color: rgb(145, 145, 145) !important;
+  &:hover {
+    color: rgb(239, 239, 239) !important;
+  }
+  &.router-link-exact-active {
+    color: rgb(239, 239, 239) !important;
+  }
+}
+
 .io {
   &::before {
     margin: 0 auto;
