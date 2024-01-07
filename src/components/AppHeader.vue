@@ -46,33 +46,24 @@ export default {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                data-aos="flip-up"
-                data-aos-delay="250"
-                aria-current="page"
-                href="#"
-                >HOME</a
-              >
-            </li>
-            <!-- <li class="nav-item">
-              <a
+              <router-link
                 class="nav-link"
                 data-aos="flip-up"
                 data-aos-delay="300"
-                href="#"
-                >ABOUT ME</a
-              >
-            </li> -->
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                data-aos="flip-up"
-                data-aos-delay="350"
-                href="#"
-                >PROJECTS</a
+                :to="{ name: 'home' }"
+                >HOME</router-link
               >
             </li>
+            <li class="nav-item">
+              <router-link
+                class="nav-link"
+                data-aos="flip-up"
+                data-aos-delay="300"
+                :to="{ name: 'projects' }"
+                >PROJECTS</router-link
+              >
+            </li>
+
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -95,6 +86,15 @@ export default {
 // VARIABLE
 @use "../style/subStyle/variable.scss" as *;
 
+.container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%) !important;
+  z-index: 2;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 0%), rgb(0 0 0));
+  backdrop-filter: blur(2px);
+}
 .navbar-collapse {
   flex-grow: 0 !important;
 }
@@ -103,7 +103,7 @@ export default {
   &:hover {
     color: rgb(239, 239, 239) !important;
   }
-  &.active {
+  &.router-link-exact-active {
     color: rgb(239, 239, 239) !important;
   }
 }

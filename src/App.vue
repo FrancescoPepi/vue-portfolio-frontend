@@ -58,7 +58,7 @@ export default {
 
 <template>
   <AppHeader data-aos="slide-down" />
-  <AppMain />
+  <router-view></router-view>
   <AppFooter />
   <AppUpViewport />
   <div class="blur"></div>

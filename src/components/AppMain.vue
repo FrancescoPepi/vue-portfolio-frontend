@@ -69,7 +69,7 @@ export default {
     <!-- HERO + PRESENTAZIONE -->
 
     <!-- DESKTOP -->
-    <div class="row about-me-lg" v-if="!isMobile()">
+    <div class="row about-me-lg mt-5" v-if="!isMobile()">
       <!-- DESCRIZIONE -->
       <div class="col-lg-6">
         <section>
