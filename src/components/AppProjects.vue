@@ -1,5 +1,4 @@
 <script>
-import Carosello from "./Carosello.vue";
 import carouselBig from "./carouselBig.vue";
 import { store } from "../data/store.js";
 
@@ -30,25 +29,15 @@ export default {
   },
 
   components: {
-    Carosello,
     carouselBig,
-    // AppPromoter,
-    // AppCall,
-    // AppCourses,
-    // AppInstructors,
-    // AppTestimonials,
-    // AppNews,
-    // AppNewsLetter,
   },
 
   props: {
     projectProps: Object,
   },
-  // created() {
-  //   console.log("http://127.0.0.1:8000/storage/" + this.store.images[0].filename);
-  // },
   created() {
     if (this.projectProps) {
+      console.log(this.projectProps);
       this.project = this.projectProps;
     }
   },

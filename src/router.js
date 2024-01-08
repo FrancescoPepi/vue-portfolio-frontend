@@ -16,6 +16,11 @@ const router = createRouter({
       name: "projects",
       component: AppProjects,
     },
+    {
+      path: "/projects/:id",
+      name: "project",
+      component: AppProjects,
+    },
   ],
   scrollBehavior(to, from, savePosition) {
     return (

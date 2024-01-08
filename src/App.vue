@@ -12,9 +12,6 @@ export default {
       store,
       scTimer: 0,
       scY: 0,
-      // api: {
-      //   baseUrl: "http://127.0.0.1:8000/api/",
-      // },
     };
   },
 
@@ -22,15 +19,6 @@ export default {
     fetchApi(uri = this.store.api.baseUrl + "projects") {
       axios.get(uri).then((responce) => {
         this.store.projects = responce.data.projects.data;
-        // for (let project of this.store.projects) {
-        //   project.images = [];
-
-        //   for (let image of responce.data.images) {
-        //     if (image.project_id == project.id) {
-        //       project.images.push(image);
-        //     }
-        //   }
-        // }
         let images = responce.data.images;
         for (let project of this.store.projects) {
           project.images = images.filter(
@@ -38,7 +26,7 @@ export default {
           );
         }
 
-        console.log(this.store.projects);
+        // console.log(this.store.projects);
       });
     },
   },

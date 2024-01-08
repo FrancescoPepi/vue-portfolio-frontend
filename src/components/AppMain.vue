@@ -1,11 +1,5 @@
 <script>
 import Carosello from "./Carosello.vue";
-// import AppCall from "./subComponentMain/AppCall.vue";
-// import AppCourses from "./subComponentMain/AppCourses.vue";
-// import AppInstructors from "./subComponentMain/AppInstructors.vue";
-// import AppTestimonials from "./subComponentMain/AppTestimonials.vue";
-// import AppNews from "./subComponentMain/AppNews.vue";
-// import AppNewsLetter from "./subComponentMain/AppNewsLetter.vue";
 import { store } from "../data/store.js";
 
 export default {
@@ -15,23 +9,10 @@ export default {
       title: "MY PROJECT",
       img: "/sfondo.png",
       imgProfile: "/io.png",
-      // active: 0,
-      // img2: "http://127.0.0.1:8000/storage/" + store.images[0].filename,
-      // nBase: 50,
     };
   },
 
   methods: {
-    // changeImage() {
-    //   this.active += 1;
-    // },
-
-    // increments() {
-    //   let nNew = this.nBase + 50;
-    //   console.log(nNew);
-    //   this.nBase = nNew;
-    //   return nNew;
-    // },
     isMobile() {
       if (screen.width <= 720) {
         return true;
@@ -41,26 +22,7 @@ export default {
 
   components: {
     Carosello,
-    // AppPromoter,
-    // AppCall,
-    // AppCourses,
-    // AppInstructors,
-    // AppTestimonials,
-    // AppNews,
-    // AppNewsLetter,
   },
-
-  // 	props:{
-  // 		passaggioInfo: stringa,
-  //  	 },
-  // created() {
-  //   console.log("http://127.0.0.1:8000/storage/" + this.store.images[0].filename);
-  // },
-  // created() {
-  //   window.setInterval(() => {
-  //     this.changeImage();
-  //   }, 3000);
-  // },
 };
 </script>
 
@@ -234,7 +196,7 @@ export default {
           :data-aos-delay="project * 150"
         >
           <!-- ! da completare -->
-          <router-link :project="project" :to="{ name: 'projects' }">
+          <router-link :to="{ name: 'project', params: { id: project } }">
             <div class="card position-relative">
               <div class="card-header">
                 <h4>
