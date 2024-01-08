@@ -1,5 +1,6 @@
 <script>
 import Carosello from "./Carosello.vue";
+import carouselBig from "./carouselBig.vue";
 import { store } from "../data/store.js";
 
 export default {
@@ -30,6 +31,7 @@ export default {
 
   components: {
     Carosello,
+    carouselBig,
     // AppPromoter,
     // AppCall,
     // AppCourses,
@@ -59,7 +61,7 @@ export default {
 
     <div class="box py-2 mb-5">
       <h1 data-aos="zoom-in" data-aos-delay="300" class="text-center">
-        {{ title }}
+        {{ this.store.projects[project.id - 1].label }}
       </h1>
     </div>
     <!-- CARD MOBILE -->
@@ -109,7 +111,12 @@ export default {
         </ul>
       </div>
       <!-- CARD DESKTOP -->
-      <Carosello :project="this.store.projects[this.project.id - 1]" />
+      <div class="box-img">
+        <carouselBig
+          :project="this.store.projects[this.project.id - 1]"
+          class="carousel"
+        />
+      </div>
       <div>{{ project.description }}</div>
 
       <!-- <div class="row row-cols-3">
@@ -160,10 +167,23 @@ li a {
   color: rgb(145, 145, 145) !important;
   &:hover {
     color: rgb(239, 239, 239) !important;
+    cursor: pointer;
   }
   &.router-link-exact-active {
     color: rgb(239, 239, 239) !important;
   }
+}
+
+.box-img {
+  //   margin: auto;
+  width: 100%;
+  text-align: center;
+  //   height: 600px;
+  //   overflow: hidden;
+  //   & .carousel {
+  //     position: relative;
+  //     top: -6%;
+  //   }
 }
 
 .io {

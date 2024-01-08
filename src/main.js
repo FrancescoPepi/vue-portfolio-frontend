@@ -21,9 +21,10 @@ import "./style/subStyle/variable.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import // faCircle as faCircleS,
-// faPhone,
-"@fortawesome/free-solid-svg-icons";
+import {
+  faCircleChevronLeft,
+  faCircleChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   faGithub,
@@ -35,7 +36,13 @@ import // faCircle as faCircleR,
 // faCopyright,
 "@fortawesome/free-regular-svg-icons";
 
-library.add(faGithub, faLinkedin, faInstagram);
+library.add(
+  faGithub,
+  faLinkedin,
+  faInstagram,
+  faCircleChevronLeft,
+  faCircleChevronRight
+);
 
 const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon);
