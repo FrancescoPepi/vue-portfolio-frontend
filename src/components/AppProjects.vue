@@ -9,9 +9,7 @@ export default {
       title: "MY PROJECT",
       img: "/sfondo.png",
       imgProfile: "/io.png",
-      project: {
-        id: 1,
-      },
+      project: store.projects[0],
     };
   },
 
@@ -20,6 +18,9 @@ export default {
       this.project = idProject;
       // console.log(this.project);
     },
+    // goBack() {
+    //   router.go(-1);
+    // },
 
     isMobile() {
       if (screen.width <= 720) {
@@ -36,16 +37,16 @@ export default {
     projectProps: Object,
   },
   created() {
-    if (this.projectProps) {
-      console.log(this.projectProps);
-      this.project = this.projectProps;
+    if (this.$route.params.id) {
+      // console.log(this.$route.params.id);
+      this.project = this.store.projects[this.$route.params.id - 1];
     }
   },
 };
 </script>
 
 <template>
-  <div class="container">
+  <div v-if="project" class="container">
     <!-- HERO + PRESENTAZIONE -->
 
     <div class="box py-2 mb-5">
@@ -54,7 +55,7 @@ export default {
       </h1>
     </div>
     <!-- CARD MOBILE -->
-    <section v-if="isMobile()">
+    <!-- <section v-if="isMobile()">
       <div class="row row-cols-1">
         <div
           v-for="project in this.store.projects"
@@ -73,9 +74,10 @@ export default {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!--  DESKTOP -->
+
     <section v-if="!isMobile()">
       <!-- SLIDER DESKTOP -->
 
@@ -107,36 +109,9 @@ export default {
         />
       </div>
       <div>{{ project.description }}</div>
-
-      <!-- <div class="row row-cols-3">
-        <div
-          v-for="project in this.store.projects"
-          class="col g-3"
-          data-aos="fade-left"
-          data-aos-anchor-placement="center-bottom"
-          :data-aos-delay="project * 150"
-        >
-          <div class="card position-relative">
-            <div class="card-header">
-              <h4>
-                {{ project.label }}
-              </h4>
-            </div>
-            <Carosello :project="project" />
-            <div class="card-text position-absolute start-0 p-2">
-              <p>
-                {{ project.type_id }}
-              </p>
-              <p>
-                {{ project.description }}
-              </p>
-            </div>
-            <div class="card-footer"></div>
-          </div>
-        </div>
-      </div> -->
     </section>
   </div>
+  <div v-else>{{ $router.go(-1) }}</div>
 </template>
 
 <style lang="scss" scoped>

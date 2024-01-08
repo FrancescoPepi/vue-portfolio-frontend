@@ -59,7 +59,7 @@ export default {
                 class="nav-link"
                 data-aos="flip-up"
                 data-aos-delay="300"
-                :to="{ name: 'projects' }"
+                :to="{ name: 'project', params: { id: 1 } }"
                 >PROJECTS</router-link
               >
             </li>

@@ -196,7 +196,7 @@ export default {
           :data-aos-delay="project * 150"
         >
           <!-- ! da completare -->
-          <router-link :to="{ name: 'project', params: { id: project } }">
+          <router-link :to="{ name: 'project', params: { id: project.id } }">
             <div class="card position-relative">
               <div class="card-header">
                 <h4>
