@@ -16,11 +16,7 @@ export default {
   methods: {
     selectProject(idProject) {
       this.project = idProject;
-      // console.log(this.project);
     },
-    // goBack() {
-    //   router.go(-1);
-    // },
 
     isMobile() {
       if (screen.width <= 720) {
@@ -38,7 +34,6 @@ export default {
   },
   created() {
     if (this.$route.params.id) {
-      // console.log(this.$route.params.id);
       this.project = this.store.projects[this.$route.params.id - 1];
     }
   },
@@ -47,15 +42,16 @@ export default {
 
 <template>
   <div v-if="project" class="container">
-    <!-- HERO + PRESENTAZIONE -->
+    <div class="row">
+      <!-- titolo -->
+      <div class="box py-2 mb-5">
+        <h1 data-aos="zoom-in" data-aos-delay="300" class="text-center">
+          {{ this.store.projects[project.id - 1].label }}
+        </h1>
+      </div>
 
-    <div class="box py-2 mb-5">
-      <h1 data-aos="zoom-in" data-aos-delay="300" class="text-center">
-        {{ this.store.projects[project.id - 1].label }}
-      </h1>
-    </div>
-    <!-- CARD MOBILE -->
-    <!-- <section v-if="isMobile()">
+      <!-- CARD MOBILE -->
+      <!-- <section v-if="isMobile()">
       <div class="row row-cols-1">
         <div
           v-for="project in this.store.projects"
@@ -76,41 +72,77 @@ export default {
       </div>
     </section> -->
 
-    <!--  DESKTOP -->
+      <!--  DESKTOP -->
 
-    <section v-if="!isMobile()">
-      <!-- SLIDER DESKTOP -->
+      <section v-if="!isMobile()">
+        <!-- SLIDER DESKTOP -->
 
-      <div class="box p-4 mb-5 slider">
-        <ul class="navbar-nav">
-          <li
-            v-for="(project, index) in this.store.projects"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-            class="nav-item"
-          >
-            <a
-              @click="selectProject(project)"
-              :class="
-                this.project.id - 1 == index ? 'router-link-exact-active' : ''
-              "
-              class="nav-link fs-4"
+        <div class="box p-4 mb-5 slider">
+          <ul class="navbar-nav">
+            <li
+              v-for="(project, index) in this.store.projects"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              class="nav-item"
             >
-              {{ project.label }}
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- CARD DESKTOP -->
-      <div class="box-img">
-        <carouselBig
-          :project="this.store.projects[this.project.id - 1]"
-          class="carousel"
-        />
-      </div>
-      <div>{{ project.description }}</div>
-    </section>
+              <a
+                @click="selectProject(project)"
+                :class="
+                  this.project.id - 1 == index ? 'router-link-exact-active' : ''
+                "
+                class="nav-link fs-4"
+              >
+                {{ project.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- CARD DESKTOP -->
+        <div class="box-img">
+          <carouselBig
+            :project="this.store.projects[this.project.id - 1]"
+            class="carousel"
+          />
+        </div>
+        <div class="row my-5">
+          <div class="col-6">
+            <div class="box py-2 mb-4">
+              <h2 data-aos="zoom-in" data-aos-delay="300" class="text-center">
+                Descrizione
+              </h2>
+            </div>
+            <div class="card-text px-3 fs-4">
+              <p>{{ project.description }}</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="box py-2 mb-4">
+              <h2 data-aos="zoom-in" data-aos-delay="300" class="text-center">
+                Informazioni
+              </h2>
+            </div>
+            <div class="card-text px-3 fs-4">
+              <p>
+                <strong>Link: </strong
+                ><a :href="project.url">{{ project.label }}</a>
+              </p>
+              <p><strong>Categoria: </strong>{{ project.type.label }}</p>
+              <p>
+                <strong>Tecnologie: </strong>
+                <span v-for="(language, index) in project.languages">
+                  {{ language.label }}
+                  <span v-if="index != project.languages.length - 1">,</span>
+                  <span v-else>.</span>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
+
+  <!-- recall back -->
   <div v-else>{{ $router.go(-1) }}</div>
 </template>
 

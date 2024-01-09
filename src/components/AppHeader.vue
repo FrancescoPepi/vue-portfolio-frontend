@@ -10,15 +10,7 @@ export default {
       img: "/logo.png",
     };
   },
-  methods: {
-    // active(index) {
-    //   for (const link in this.links) {
-    //     link == index
-    //       ? (this.links[link].active = true)
-    //       : (this.links[link].active = false);
-    //   }
-    // },
-  },
+  methods: {},
   components: {
     // AppHero,
   },
@@ -54,9 +46,13 @@ export default {
                 >HOME</router-link
               >
             </li>
+
             <li class="nav-item">
               <router-link
                 class="nav-link"
+                :class="
+                  $route.name == 'project' ? 'router-link-exact-active' : ''
+                "
                 data-aos="flip-up"
                 data-aos-delay="300"
                 :to="{ name: 'project', params: { id: 1 } }"
@@ -92,8 +88,8 @@ export default {
   left: 50%;
   transform: translate(-50%, 0%) !important;
   z-index: 2;
-  background-image: linear-gradient(to top, rgb(0 0 0 / 0%), rgb(0 0 0));
-  backdrop-filter: blur(2px);
+  // background-image: linear-gradient(to top, rgb(0 0 0 / 0%), rgb(0 0 0));
+  // backdrop-filter: blur(2px);
 }
 .navbar-collapse {
   flex-grow: 0 !important;

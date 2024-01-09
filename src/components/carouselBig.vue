@@ -8,6 +8,7 @@ export default {
       active: 0,
       projectX: {},
       interval: null,
+      stop: false,
     };
   },
 
@@ -72,7 +73,11 @@ export default {
     <div class="position-absolute start-87" @click="changeNext">
       <font-awesome-icon icon="fa-solid fa-circle-chevron-right" size="2xl" />
     </div>
-    <div v-for="(image, index) in project.images" class="box">
+    <div
+      v-for="(image, index) in project.images"
+      class="box"
+      :class="!interval ? 'active' : ''"
+    >
       <img
         v-show="index == active"
         :src="'http://127.0.0.1:8000/storage/' + image.filename"
@@ -102,6 +107,7 @@ img {
   height: 100%;
   line-height: 500px;
   cursor: pointer;
+  z-index: 2;
 }
 .start-87 {
   right: 5%;
@@ -109,6 +115,7 @@ img {
   height: 100%;
   line-height: 500px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .slide-left {
@@ -130,6 +137,18 @@ img {
   }
   100% {
     opacity: 1;
+  }
+}
+.active {
+  opacity: 0.5;
+  &::after {
+    content: url("/pause.svg");
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    display: inline-block;
+    width: 700px;
   }
 }
 </style>

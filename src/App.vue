@@ -19,6 +19,7 @@ export default {
     fetchApi(uri = this.store.api.baseUrl + "projects") {
       axios.get(uri).then((responce) => {
         this.store.projects = responce.data.projects.data;
+        console.log(responce.data.projects.data);
         let images = responce.data.images;
         for (let project of this.store.projects) {
           project.images = images.filter(
@@ -45,11 +46,16 @@ export default {
 </script>
 
 <template>
-  <AppHeader data-aos="slide-down" />
+  <AppHeader class="prova" data-aos="slide-down" />
   <router-view></router-view>
   <AppFooter />
   <AppUpViewport />
   <div class="blur"></div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.prova {
+  background-image: linear-gradient(to top, rgb(0 0 0 / 0%), rgb(0 0 0));
+  backdrop-filter: blur(2px);
+}
+</style>
