@@ -85,15 +85,21 @@ export default {
               data-aos-delay="300"
               class="nav-item"
             >
-              <a
-                @click="selectProject(project)"
-                :class="
-                  this.project.id - 1 == index ? 'router-link-exact-active' : ''
-                "
-                class="nav-link fs-4"
+              <router-link
+                :to="{ name: 'project', params: { id: project.id } }"
               >
-                {{ project.label }}
-              </a>
+                <a
+                  @click="selectProject(project)"
+                  :class="
+                    this.project.id - 1 == index
+                      ? 'router-link-exact-active'
+                      : ''
+                  "
+                  class="nav-link fs-4"
+                >
+                  {{ project.label }}
+                </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -105,17 +111,7 @@ export default {
           />
         </div>
         <div class="row my-5">
-          <div class="col-6">
-            <div class="box py-2 mb-4">
-              <h2 data-aos="zoom-in" data-aos-delay="300" class="text-center">
-                Descrizione
-              </h2>
-            </div>
-            <div class="card-text px-3 fs-4">
-              <p>{{ project.description }}</p>
-            </div>
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <div class="box py-2 mb-4">
               <h2 data-aos="zoom-in" data-aos-delay="300" class="text-center">
                 Informazioni
@@ -130,11 +126,21 @@ export default {
               <p>
                 <strong>Tecnologie: </strong>
                 <span v-for="(language, index) in project.languages">
-                  {{ language.label }}
-                  <span v-if="index != project.languages.length - 1">,</span>
+                  {{ language.label
+                  }}<span v-if="index != project.languages.length - 1">, </span>
                   <span v-else>.</span>
                 </span>
               </p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="box py-2 mb-4">
+              <h2 data-aos="zoom-in" data-aos-delay="300" class="text-center">
+                Descrizione
+              </h2>
+            </div>
+            <div class="card-text px-3 fs-4">
+              <p>{{ project.description }}</p>
             </div>
           </div>
         </div>

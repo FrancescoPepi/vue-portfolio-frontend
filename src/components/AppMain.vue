@@ -200,19 +200,18 @@ export default {
             <div class="card position-relative">
               <div class="card-header">
                 <h4>
-                  {{ project.label }}
+                  <a :href="`${project.url}`">{{ project.label }}</a>
                 </h4>
               </div>
               <Carosello :project="project" />
               <div class="card-text position-absolute start-0 p-2">
                 <p>
-                  {{ project.type_id }}
-                </p>
-                <p>
-                  {{ project.description }}
+                  {{ project.description.substring(0, 150) + "..." }}
                 </p>
               </div>
-              <div class="card-footer"></div>
+              <div class="card-footer">
+                <p>{{ project.type.label }}</p>
+              </div>
             </div>
           </router-link>
         </div>
@@ -289,7 +288,7 @@ a {
       rgb(186, 182, 182, 1)
     );
     backdrop-filter: blur(1px);
-    bottom: 5%;
+    bottom: 15%;
   }
 }
 </style>

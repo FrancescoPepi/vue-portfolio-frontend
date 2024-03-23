@@ -18,8 +18,9 @@ export default {
   methods: {
     fetchApi(uri = this.store.api.baseUrl + "projects") {
       axios.get(uri).then((responce) => {
+        console.log(responce.data.projects);
         this.store.projects = responce.data.projects.data;
-        console.log(responce.data.projects.data);
+        // console.log(responce.data.projects.data);
         let images = responce.data.images;
         for (let project of this.store.projects) {
           project.images = images.filter(

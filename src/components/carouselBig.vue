@@ -12,6 +12,13 @@ export default {
     };
   },
 
+  watch: {
+    $route() {
+      // Resetta l'indice attivo quando l'URL cambia
+      this.active = 0;
+    },
+  },
+
   methods: {
     changeImage() {
       if (this.active >= this.project.images.length - 1) {
@@ -29,7 +36,7 @@ export default {
     },
     changeBack() {
       if (this.active <= 0) {
-        this.active = this.project.images.length - 1;
+        this.active = this.project.images.length;
       }
       this.active -= 1;
     },
