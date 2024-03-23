@@ -42,9 +42,13 @@ export default {
   <div class="container">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
+        <router-link
+          class="nav-link"
+          data-aos="flip-up"
+          data-aos-delay="300"
+          :to="{ name: 'home' }"
           ><img :src="img" alt="Bootstrap" width="100"
-        /></a>
+        /></router-link>
         <button
           class="navbar-toggler"
           type="button"
