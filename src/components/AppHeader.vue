@@ -10,6 +10,27 @@ export default {
       img: "/logo.png",
     };
   },
+  watch: {
+    $route() {
+      if (this.$route.path.startsWith("/projects")) {
+        // Controlla il parametro ID solo se l'utente è sulla pagina "/projects"
+        const newId = this.$route.params.id;
+        // Verifica se newId è un numero
+        if (!isNaN(newId)) {
+          // Esegui qualcosa quando l'ID cambia su un numero valido
+          this.$nextTick(() => {
+            // Seleziona l'elemento <a> all'interno di un determinato <li>
+            const listItem = document.getElementById("project-header");
+            const anchorTag = listItem.querySelector("a");
+            if (anchorTag) {
+              // Fai qualcosa con il tag <a> selezionato
+              anchorTag.classList.add("aos-animate");
+            }
+          });
+        }
+      }
+    },
+  },
   methods: {},
   components: {
     // AppHero,
@@ -47,7 +68,7 @@ export default {
               >
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="project-header">
               <router-link
                 class="nav-link"
                 :class="
